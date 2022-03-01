@@ -21,10 +21,21 @@
 </template>
 
 <script>
+import {eventBus} from "../main";
 import Product from "./Product.vue"
 export default {
     components : {
         appProduct : Product
+    },
+    data(){
+      return{
+        productList: [],
+      }
+    },
+    created(){
+      eventBus.$on("productAdded",(product)=>{
+        this.productList.push(product);
+      })
     }
 }
 </script>
